@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Platform,
   SafeAreaView,
@@ -30,26 +30,6 @@ export default function App() {
     );
     await sound.playAsync();
   };
-
-  useEffect(() => {
-    let interval = null;
-
-    if (isActive) {
-      interval = setInterval(() => {
-        setTime(time - 1);
-      }, 1000);
-    } else {
-      clearInterval(interval);
-    }
-
-    if (time === 0) {
-      setIsActive(false);
-      setIsWorking((prev) => !prev);
-      setTime(isWorking ? 300 : 1500);
-    }
-
-    return () => clearInterval(interval);
-  }, [isActive, time]);
 
   return (
     <SafeAreaView

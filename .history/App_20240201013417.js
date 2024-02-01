@@ -44,8 +44,7 @@ export default function App() {
 
     if (time === 0) {
       setIsActive(false);
-      setIsWorking((prev) => !prev);
-      setTime(isWorking ? 300 : 1500);
+      setIsWorking(!isWorking);
     }
 
     return () => clearInterval(interval);

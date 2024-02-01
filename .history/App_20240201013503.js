@@ -37,14 +37,14 @@ export default function App() {
     if (isActive) {
       interval = setInterval(() => {
         setTime(time - 1);
-      }, 1000);
+      }, 10);
     } else {
       clearInterval(interval);
     }
 
     if (time === 0) {
       setIsActive(false);
-      setIsWorking((prev) => !prev);
+      setIsWorking(!isWorking);
       setTime(isWorking ? 300 : 1500);
     }
 

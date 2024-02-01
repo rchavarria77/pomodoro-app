@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Platform,
   SafeAreaView,
@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { Header } from './src/components/Header';
 import { Timer } from './src/components/Timer';
-import { Audio } from 'expo-av';
 
 const colors = ['#F7DC6F', '#A2D9CE', '#D7BDE2'];
 
@@ -20,36 +19,8 @@ export default function App() {
   const [isActive, setIsActive] = useState(false);
 
   const handleStartStop = () => {
-    playSound();
     setIsActive(!isActive);
   };
-
-  const playSound = async () => {
-    const { sound } = await Audio.Sound.createAsync(
-      require('./assets/click.wav')
-    );
-    await sound.playAsync();
-  };
-
-  useEffect(() => {
-    let interval = null;
-
-    if (isActive) {
-      interval = setInterval(() => {
-        setTime(time - 1);
-      }, 1000);
-    } else {
-      clearInterval(interval);
-    }
-
-    if (time === 0) {
-      setIsActive(false);
-      setIsWorking((prev) => !prev);
-      setTime(isWorking ? 300 : 1500);
-    }
-
-    return () => clearInterval(interval);
-  }, [isActive, time]);
 
   return (
     <SafeAreaView

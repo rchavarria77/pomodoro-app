@@ -44,7 +44,7 @@ export default function App() {
 
     if (time === 0) {
       setIsActive(false);
-      setIsWorking((prev) => !prev);
+      setIsWorking(!isWorking);
       setTime(isWorking ? 300 : 1500);
     }
 

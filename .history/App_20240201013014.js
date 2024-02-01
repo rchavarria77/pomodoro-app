@@ -35,21 +35,9 @@ export default function App() {
     let interval = null;
 
     if (isActive) {
-      interval = setInterval(() => {
-        setTime(time - 1);
-      }, 1000);
-    } else {
-      clearInterval(interval);
+      interval = setInterval(() => {}, 1000);
     }
-
-    if (time === 0) {
-      setIsActive(false);
-      setIsWorking((prev) => !prev);
-      setTime(isWorking ? 300 : 1500);
-    }
-
-    return () => clearInterval(interval);
-  }, [isActive, time]);
+  }, []);
 
   return (
     <SafeAreaView
